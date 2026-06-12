@@ -1,0 +1,12 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#f0f4f8"/>
+  <path d="M80 220 Q 200 100, 320 220 L 320 260 L 80 260 Z" fill="#2c3e50"/>
+  <rect x="120" y="80" width="160" height="180" rx="8" fill="#34495e"/>
+  <rect x="135" y="100" width="130" height="140" rx="4" fill="white"/>
+  <line x1="150" y1="130" x2="250" y2="130" stroke="#2c3e50" stroke-width="2"/>
+  <line x1="150" y1="155" x2="230" y2="155" stroke="#2c3e50" stroke-width="2"/>
+  <line x1="150" y1="180" x2="210" y2="180" stroke="#2c3e50" stroke-width="2"/>
+  <circle cx="200" cy="50" r="30" fill="#f39c12"/>
+  <text x="200" y="58" text-anchor="middle" fill="white" font-family="Arial" font-size="24" font-weight="bold">L</text>
+  <text x="200" y="285" text-anchor="middle" fill="#2c3e50" font-family="Arial" font-size="16">Sistema Livraria</text>
+</svg>

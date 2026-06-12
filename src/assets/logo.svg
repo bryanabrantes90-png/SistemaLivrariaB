@@ -1,0 +1,6 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="40" height="40" rx="8" fill="#2c3e50"/>
+  <path d="M10 30 Q 20 15, 30 30 L 30 35 L 10 35 Z" fill="white"/>
+  <rect x="14" y="10" width="12" height="20" rx="2" fill="#f39c12"/>
+  <text x="20" y="24" text-anchor="middle" fill="white" font-family="Arial" font-size="10" font-weight="bold">L</text>
+</svg>

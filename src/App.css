@@ -1,0 +1,256 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+body {
+  background-color: #f5f7fa;
+  color: #333;
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Cabeçalho */
+.app-header {
+  padding: 20px 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.app-header h1 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* Mensagem */
+.mensagem {
+  padding: 12px 20px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+.mensagem.sucesso { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+.mensagem.erro { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+
+/* Barra de Ações */
+.barra-acoes {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  padding: 18px 22px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+}
+
+.btn-novo {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.btn-novo:hover { background-color: #218838; }
+
+.busca {
+  position: relative;
+}
+.busca span {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+}
+.busca input {
+  padding: 10px 12px 10px 35px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  width: 300px;
+  font-size: 14px;
+}
+
+/* Card Tabela */
+.card-tabela {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+.cabecalho-tabela {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 22px;
+  border-bottom: 1px solid #eee;
+}
+.cabecalho-tabela h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+.total {
+  font-size: 14px;
+  color: #888;
+}
+
+/* Tabela */
+.tabela-wrapper {
+  overflow-x: auto;
+}
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+}
+.tabela th {
+  background: #f8f9fa;
+  padding: 14px 12px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+  color: #666;
+  border-bottom: 1px solid #eee;
+}
+.tabela td {
+  padding: 14px 12px;
+  font-size: 14px;
+  border-bottom: 1px solid #eee;
+}
+.tabela tr:hover {
+  background: #fafafa;
+}
+
+.id { color: #0066cc; font-weight: 600; }
+.titulo { font-weight: 500; }
+.autor { color: #888; font-style: italic; }
+.preco { color: #28a745; font-weight: 600; }
+.estoque {
+  background: #e6ffea;
+  color: #28a745;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  display: inline-block;
+}
+.isbn { color: #999; font-size: 13px; }
+.data { color: #888; font-size: 13px; }
+
+.acoes {
+  display: flex;
+  gap: 8px;
+}
+.btn-editar, .btn-excluir {
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-editar { background: #e3f2fd; color: #0066cc; }
+.btn-editar:hover { background: #0066cc; color: white; }
+.btn-excluir { background: #ffebee; color: #dc3545; }
+.btn-excluir:hover { background: #dc3545; color: white; }
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+.modal {
+  background: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+.modal-cabecalho {
+  padding: 18px 22px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.modal-cabecalho h2 { font-size: 16px; }
+.btn-fechar {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #999;
+}
+
+.form { padding: 22px; }
+.linha {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+.campo { flex: 1; }
+.campo label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #555;
+}
+.campo input, .campo textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.btn-salvar {
+  width: 100%;
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* Estados */
+.carregando, .vazio {
+  padding: 40px;
+  text-align: center;
+  color: #888;
+}
+
+.rodape {
+  text-align: center;
+  padding: 20px;
+  color: #888;
+  font-size: 13px;
+  margin-top: 20px;
+  border-top: 1px solid #eee;
+}
