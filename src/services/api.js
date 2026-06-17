@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8085/api/livros";
+const API_URL = "https://sistemalivraria-backend-production.up.railway.app/api/livros";
 
 // Salvar novo livro
 export const salvarLivro = async (dados) => {
