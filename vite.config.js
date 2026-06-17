@@ -3,17 +3,12 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
+  build: {
+    outDir: 'dist', // Pasta que vai para a nuvem
+    emptyOutDir: true
+  },
   server: {
     port: 5173,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:8084',
-        changeOrigin: true
-      },
-      '/imagens': {
-        target: 'http://localhost:8084',
-        changeOrigin: true
-      }
-    }
+    host: true
   }
 })

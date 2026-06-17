@@ -1,68 +1,40 @@
+// 🔹 URL do BACKEND que está no Railway — COLOQUE A SUA URL A BAIXO
+// Exemplo: "https://sistemalivraria-backend-production.up.railway.app/api/livros"
+// Para teste local
+// ✅ AGORA USA O ENDEREÇO DO RAILWAY
 const API_URL = "https://sistemalivraria-backend-production.up.railway.app/api/livros";
 
-// Salvar novo livro
-export const salvarLivro = async (dados) => {
-  try {
-    const resposta = await fetch(API_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        titulo: dados.titulo,
-        autor: dados.autor,
-        preco: parseFloat(dados.preco),
-        quantidadeEstoque: parseInt(dados.quantidade),
-        descricao: dados.descricao || "",
-        isbn: dados.isbn || "",
-        dataCadastro: new Date().toISOString().split('T')[0]
-      })
-    });
-    return await resposta.json();
-  } catch (erro) {
-    console.error("Erro ao salvar:", erro);
-    throw erro;
-  }
-};
+// Depois troca para nuvem:
+// const API_URL = "https://sistemalivraria-backend-production.up.railway.app/api/livros";
 
-// Listar todos
-export const listarLivros = async () => {
-  try {
-    const resposta = await fetch(API_URL);
-    if (!resposta.ok) throw new Error("Erro na requisição");
-    return await resposta.json();
-  } catch (erro) {
-    console.error("Erro ao carregar:", erro);
-    return [];
-  }
-};
+// Funções de conexão
+export async function listarLivros() {
+  const resposta = await fetch(API_URL);
+  if (!resposta.ok) throw new Error("Erro ao buscar livros");
+  return resposta.json();
+}
 
-// ✅ ATUALIZAR LIVRO
-export const atualizarLivro = async (id, dados) => {
-  try {
-    const resposta = await fetch(`${API_URL}/${id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        titulo: dados.titulo,
-        autor: dados.autor,
-        preco: parseFloat(dados.preco),
-        quantidadeEstoque: parseInt(dados.quantidade),
-        descricao: dados.descricao || "",
-        isbn: dados.isbn || ""
-      })
-    });
-    return await resposta.json();
-  } catch (erro) {
-    console.error("Erro ao atualizar:", erro);
-    throw erro;
-  }
-};
+export async function salvarLivro(livro) {
+  const resposta = await fetch(API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(livro)
+  });
+  if (!resposta.ok) throw new Error("Erro ao cadastrar");
+  return resposta.json();
+}
 
-// ✅ EXCLUIR LIVRO
-export const excluirLivro = async (id) => {
-  try {
-    await fetch(`${API_URL}/${id}`, { method: "DELETE" });
-  } catch (erro) {
-    console.error("Erro ao excluir:", erro);
-    throw erro;
-  }
-};
+export async function atualizarLivro(id, livro) {
+  const resposta = await fetch(`${API_URL}/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(livro)
+  });
+  if (!resposta.ok) throw new Error("Erro ao atualizar");
+  return resposta.json();
+}
+
+export async function excluirLivro(id) {
+  const resposta = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+  if (!resposta.ok) throw new Error("Erro ao excluir");
+}
