@@ -1,40 +1,44 @@
-// 🔹 URL do BACKEND que está no Railway — COLOQUE A SUA URL A BAIXO
-// Exemplo: "https://sistemalivraria-backend-production.up.railway.app/api/livros"
-// Para teste local
-// ✅ AGORA USA O ENDEREÇO DO RAILWAY
-const API_URL = "https://sistemalivraria-backend-production.up.railway.app/api/livros";
+import axios from "axios";
 
-// Depois troca para nuvem:
-// const API_URL = "https://sistemalivraria-backend-production.up.railway.app/api/livros";
+// Lê a URL do arquivo .env
+const API_URL = import.meta.env.VITE_API_URL;
 
-// Funções de conexão
-export async function listarLivros() {
-  const resposta = await fetch(API_URL);
-  if (!resposta.ok) throw new Error("Erro ao buscar livros");
-  return resposta.json();
-}
+console.log("🔗 Conectando à API:", API_URL); // para verificar no console
 
-export async function salvarLivro(livro) {
-  const resposta = await fetch(API_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(livro)
-  });
-  if (!resposta.ok) throw new Error("Erro ao cadastrar");
-  return resposta.json();
-}
+const api = axios.create({
+  baseURL: API_URL,
+  headers: { "Content-Type": "application/json" },
+  timeout: 8000
+});
 
-export async function atualizarLivro(id, livro) {
-  const resposta = await fetch(`${API_URL}/${id}`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(livro)
-  });
-  if (!resposta.ok) throw new Error("Erro ao atualizar");
-  return resposta.json();
-}
+// Tratamento de erros detalhado
+api.interceptors.response.use(
+  res => res,
+  err => {
+    console.error("❌ Erro na requisição:");
+    console.error("→ Status:", err.response?.status);
+    console.error("→ Mensagem:", err.message);
+    console.error("→ Resposta:", err.response?.data);
+    return Promise.reject(err);
+  }
+);
 
-export async function excluirLivro(id) {
-  const resposta = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
-  if (!resposta.ok) throw new Error("Erro ao excluir");
-}
+// 📚 Livros
+export const listarLivros = () => api.get("/livros").then(r => r.data);
+export const salvarLivro = (dados) => api.post("/livros", dados).then(r => r.data);
+export const atualizarLivro = (id, dados) => api.put(`/livros/${id}`, dados).then(r => r.data);
+export const excluirLivro = (id) => api.delete(`/livros/${id}`);
+
+// ✍️ Autores
+export const listarAutores = () => api.get("/autores").then(r => r.data);
+export const salvarAutor = (dados) => api.post("/autores", dados).then(r => r.data);
+export const atualizarAutor = (id, dados) => api.put(`/autores/${id}`, dados).then(r => r.data);
+export const excluirAutor = (id) => api.delete(`/autores/${id}`);
+
+// 🗂️ Categorias
+export const listarCategorias = () => api.get("/categorias").then(r => r.data);
+export const salvarCategoria = (dados) => api.post("/categorias", dados).then(r => r.data);
+export const atualizarCategoria = (id, dados) => api.put(`/categorias/${id}`, dados).then(r => r.data);
+export const excluirCategoria = (id) => api.delete(`/categorias/${id}`);
+
+export default api;
